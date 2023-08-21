@@ -104,7 +104,7 @@ class JSONResponseMixin:
         """
         Returns a JSON response, transforming 'context' to make the payload.
         """
-        return JsonResponse(self.get_data(context), **response_kwargs, safe=False)
+        return JsonResponse(self.get_data(context), **response_kwargs)
 
     def get_data(self, context):
         """

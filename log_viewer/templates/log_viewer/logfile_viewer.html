@@ -98,7 +98,7 @@
 
                 try {
                     response.logs.forEach(function(text, numb, logs){
-                      text = escapeHtml(text);
+                      text = text;
                       new_logs.push([numb+1, text]);
                     });
                 } catch {

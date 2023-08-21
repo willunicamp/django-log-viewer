@@ -80,7 +80,7 @@ class LogJsonView(JSONResponseMixin, TemplateView):
                         context["last"] = True
                     else:
                         context["last"] = False
-                    context["logs"] = next_lines
+                    context["logs"] = mark_safe(next_lines)
                     context["current_file"] = current_file
                     context["file"] = file
 

@@ -68,9 +68,9 @@ class LogJsonView(JSONResponseMixin, TemplateView):
                 with open(file_log, encoding="utf8", errors="ignore") as file:
                     next_lines = list(
                         islice(
-                            mark_safe(readlines_reverse(
+                            readlines_reverse(
                                 file, exclude=settings.LOG_VIEWER_EXCLUDE_TEXT_PATTERN
-                            )),
+                            ),
                             (page - 1) * lines_per_page,
                             page * lines_per_page,
                         )
@@ -80,7 +80,7 @@ class LogJsonView(JSONResponseMixin, TemplateView):
                         context["last"] = True
                     else:
                         context["last"] = False
-                    context["logs"] = next_lines
+                    context["logs"] = list(map(mark_safe, next_lines)) 
                     context["current_file"] = current_file
                     context["file"] = file
 

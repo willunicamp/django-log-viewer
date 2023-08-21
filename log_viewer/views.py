@@ -3,6 +3,7 @@ import zipfile
 from io import BytesIO
 from itertools import islice
 
+from django.utils.html import mark_safe
 from django.http import HttpResponse, Http404
 from django.views.generic import TemplateView as _TemplateView
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -112,7 +113,8 @@ class LogJsonView(JSONResponseMixin, TemplateView):
             del context["view"]
 
         context.update(**log_json)
-        return self.render_to_json_response(context, **response_kwargs)
+        return self.render_to_json_response(mark_safe(context), **response_kwargs)
+
 
 
 class LogDownloadView(TemplateView):
